@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <title>Blog App</title>
+</head>
+<body>
+    <div class="container">
+        <h1>My Blog</h1>
+        <form action="/create-post" method="POST">
+            <textarea name="postContent" placeholder="Write a post..." required></textarea>
+            <button type="submit">Post</button>
+        </form>
+        <div>
+            <% if (posts.length > 0) { %>
+                <% posts.forEach((post, index) => { %>
+                    <div class="post">
+                        <h2>Post <%= index + 1 %></h2>
+                        <p><%= post %></p>
+                        <form action="/delete-post" method="POST" style="display: inline;">
+                            <input type="hidden" name="index" value="<%= index %>">
+                            <button type="submit">Delete</button>
+                        </form>
+                        <form action="/edit-post" method="GET" style="display: inline;">
+                            <input type="hidden" name="index" value="<%= index %>">
+                            <button type="submit">Edit</button>
+                        </form>
+                    </div>
+                <% }); %>
+            <% } else { %>
+                <p>No posts yet! Be the first to add one.</p>
+            <% } %>
+        </div>
+    </div>
+</body>
+
+</html>
