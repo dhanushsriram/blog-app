@@ -19,10 +19,11 @@ app.get("/", (req, res) => {
 });
 
 app.post("/create-post", (req, res) => {
-  const post = req.body.postContent;
-  if (post) posts.push(post); 
-  res.redirect("/"); 
+  const { postTitle, postContent } = req.body;
+  posts.push({ title: postTitle, content: postContent });
+  res.redirect("/");
 });
+
 
 
 app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
@@ -35,18 +36,17 @@ app.post("/delete-post", (req, res) => {
   res.redirect("/");
 });
 app.get("/edit-post", (req, res) => {
-  const index = parseInt(req.query.index); 
-  if (!isNaN(index) && index >= 0 && index < posts.length) {
-    res.render("edit", { post: posts[index], index }); 
-  } else {
-    res.redirect("/"); 
-  }
+  const index = req.query.index;
+  const post = posts[index];
+  res.render("edit", { index, title: post.title, content: post.content });
 });
+
 app.post("/update-post", (req, res) => {
-  const index = parseInt(req.body.index); 
-  const updatedContent = req.body.postContent; 
-  if (!isNaN(index) && index >= 0 && index < posts.length && updatedContent) {
-    posts[index] = updatedContent; 
-  }
-  res.redirect("/"); 
+  const index = req.body.index;
+  posts[index] = {
+      title: req.body.postTitle,
+      content: req.body.postContent
+  };
+  res.redirect("/");
 });
+

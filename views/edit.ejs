@@ -9,9 +9,10 @@
 <body>
     <h1>Edit Post</h1>
     <form action="/update-post" method="POST">
-        <textarea name="postContent" required><%= post %></textarea>
         <input type="hidden" name="index" value="<%= index %>">
-        <button type="submit">Save</button>
+            <input type="text" name="postTitle" value="<%= title %>" required>
+            <textarea name="postContent" required><%= content %></textarea>
+            <button type="submit">Update</button>
     </form>
 </body>
 </html>
