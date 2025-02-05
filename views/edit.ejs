@@ -8,11 +8,11 @@
 </head>
 <body>
     <h1>Edit Post</h1>
-    <form action="/update-post" method="POST">
+    <form id ="form" action="/update-post" method="POST">
         <input type="hidden" name="index" value="<%= index %>">
             <input type="text" name="postTitle" value="<%= title %>" required>
             <textarea name="postContent" required><%= content %></textarea>
-            <button type="submit">Update</button>
+            <button  type="submit">Update</button>
     </form>
 </body>
 </html>

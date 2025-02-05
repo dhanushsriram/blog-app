@@ -9,7 +9,7 @@
 <body>
     <div class="container">
         <h1>My Blog</h1>
-        <form action="/create-post" method="POST">
+        <form id ="form" action="/create-post" method="POST">
             <input type="text" name="postTitle" placeholder="Post Title" required>
             <textarea name="postContent" placeholder="Write a post..." required></textarea>
             <button type="submit">Post</button>
@@ -22,13 +22,13 @@
                         <p><%= post.content %></p>
                         <form action="/delete-post" method="POST" style="display: inline;">
                             <input type="hidden" name="index" value="<%= index %>">
-                            <button type="submit">Delete</button>
+                            <button id ="smallbuttons" type="submit">Delete</button>
                         </form>
                         <form action="/edit-post" method="GET" style="display: inline;">
                             <input type="hidden" name="index" value="<%= index %>">
                             <input type="hidden" name="title" value="<%= post.title %>">
                             <input type="hidden" name="content" value="<%= post.content %>">
-                            <button type="submit">Edit</button>
+                            <button id ="smallbuttons" type="submit">Edit</button>
                         </form>
                     </div>
                 <% }); %>
